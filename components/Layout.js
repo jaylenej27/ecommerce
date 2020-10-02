@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Footer from './Footer';
 import Header from './Header';
 
 export default function Layout(props) {
@@ -12,7 +13,7 @@ export default function Layout(props) {
 
       <main>{props.children}</main>
 
-      <footer>Links will be here</footer>
+      <Footer />
     </>
   );
 }
