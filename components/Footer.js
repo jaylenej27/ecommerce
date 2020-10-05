@@ -6,14 +6,16 @@ import Link from 'next/link';
 const centeredContainerStyles = css`
   max-width: 100%;
   text-align: center;
-  justify-content: center;
+  justify-content: space-between;
   display: block;
   position: relative;
   margin-top: 15vh;
+  border-top: 3px solid #82afba;
 
   ul {
     li {
       list-style: none;
+      display: inline;
     }
   }
 `;

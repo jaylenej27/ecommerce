@@ -97,7 +97,7 @@ export default function Header() {
           <a>Home</a>
         </Link>
 
-        <Link href="/shop">
+        <Link href="a#">
           <a>Shop</a>
         </Link>
 
