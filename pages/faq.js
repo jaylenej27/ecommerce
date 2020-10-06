@@ -23,15 +23,7 @@ export default function FAQ(props) {
               content="Short answer: Europe! Spain.... Alicante... awesome places"
             />
             <Accordion title="Why Applejacks" content="We are amazing" />
-            <Accordion
-              title="Who are you"
-              content="
-   <p>friends</p>
-   </br>
-   <p>family</p>
-   </br>
-   <p>potatoes</p>"
-            />
+            <Accordion title="Who are you" content="Friend" />
           </div>
         </div>
       </main>

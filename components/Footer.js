@@ -28,16 +28,42 @@ export default function Footer() {
           <Link href="a#">
             <li>Imprint</li>
           </Link>
+          <br />
           <Link href="a#">
             <li>Data Privacy</li>
           </Link>
-          <Link href="a#">
-            <li>Facebook</li>
+          <br />
+          <Link href="https://www.facebook.com/applejacks_shoes">
+            <img
+              src="/facebook.svg"
+              alt="instagram logo"
+              style={{ height: 20 }}
+            />
           </Link>
-          <Link href="a#">
-            <li>Instagram</li>
+          <br />
+          <Link href="https://www.instagram.com/applejacks_shoes">
+            <img
+              src="/instagram.svg"
+              alt="instagram logo"
+              style={{ height: 20 }}
+            />
           </Link>
         </ul>
+        <div>
+          <p style={{ fontSize: 8 }}>
+            Icons made by
+            <Link
+              href="https://www.flaticon.com/authors/freepik"
+              title="Freepik"
+            >
+              Freepik
+            </Link>
+            from
+            <Link href="https://www.flaticon.com/" title="Flaticon">
+              www.flaticon.com
+            </Link>
+          </p>
+        </div>
       </div>
     </footer>
   );

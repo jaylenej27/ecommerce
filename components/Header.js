@@ -97,7 +97,7 @@ export default function Header() {
           <a>Home</a>
         </Link>
 
-        <Link href="a#">
+        <Link href="productlist">
           <a>Shop</a>
         </Link>
 
@@ -116,7 +116,7 @@ export default function Header() {
         </Link>
 
         <Link href="/ship-return">
-          <a>Shipping & Returns</a>
+          <a>Ship / Return</a>
         </Link>
       </div>
     </header>

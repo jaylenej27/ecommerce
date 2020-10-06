@@ -30,6 +30,7 @@ const videoContainer = css`
     font-size: 18px;
     display: flex;
     transition: background-color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 10px;
 
     &:hover {
       transition: background-color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -70,9 +71,6 @@ const categoryImageHolder = css`
   flex-wrap: nowrap;
   justify-content: center;
 
-  /* position: relative;
-  text-align: center; */
-
   img {
     max-width: 19.75rem;
     margin: 0 0.75rem;
@@ -92,6 +90,8 @@ const categoryImageHolder = css`
     border: none;
     cursor: pointer;
     transition: background-color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 10px;
+    width: 95px;
 
     &:hover {
       transition: background-color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
