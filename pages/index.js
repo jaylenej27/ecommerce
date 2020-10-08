@@ -10,7 +10,8 @@ const centeredContainerStyles = css`
   justify-content: center;
   display: block;
   position: relative;
-  margin-top: 15vh;
+  margin-top: 10vh;
+  color: #1d1b1b;
 `;
 
 const videoContainer = css`
@@ -19,18 +20,18 @@ const videoContainer = css`
   text-align: center;
   padding: 2rem 0.5rem;
   align-items: center;
-  margin: 0;
 
   button {
     background-color: #e7d187;
     border: 2px solid transparent;
     cursor: pointer;
-    padding: 14px 22px 10px;
-    color: white;
-    font-size: 18px;
-    display: flex;
+    padding: 35px 46px;
+    color: #1d1b1b;
+    font-size: 22px;
     transition: background-color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     border-radius: 10px;
+    margin-left: 50px;
+    margin-top: 60vh;
 
     &:hover {
       transition: background-color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
@@ -44,7 +45,6 @@ const videoDisplay = css`
   max-width: 100vw;
   object-fit: contain;
   display: block;
-  margin-top: 0px;
   z-index: -1;
 
   video {

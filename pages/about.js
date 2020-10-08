@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import Layout from '../components/Layout';
+import Head from 'next/head';
 
 const centeredContainerStyles = css`
   max-width: 100%;
@@ -25,6 +26,9 @@ const centeredContainerStyles = css`
 export default function AboutUs(props) {
   return (
     <Layout>
+      <Head>
+        <title>All products</title>
+      </Head>
       <main>
         <div css={centeredContainerStyles}>
           <section>

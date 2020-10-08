@@ -1,57 +1,59 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import Layout from '../components/Layout';
+import Head from 'next/head';
+import Link from 'next/link';
+import { shoes } from '../utilities/productdatabase';
 
-const img1 = css`
-  position: absolute;
-  width: 316px;
-  height: 364px;
-  left: 271px;
-  top: 261px;
-  background: #c4c4c4;
+const intro = css`
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
 `;
 
-const img2 = css`
-  position: absolute;
-  width: 310px;
-  height: 364px;
-  left: 853px;
-  top: 261px;
-  background: #c4c4c4;
+const product = css`
+  height: 200px;
+  margin: 10px;
+  border-radius: 20%;
+  cursor: pointer;
+  &:hover {
+     {
+      -moz-box-shadow: 0 0 20px #666666;
+      -webkit-box-shadow: 0 0 20px #666666;
+      box-shadow: 0 0 20px #666666;
+    }
+  }
 `;
 
-const img3 = css`
-  position: absolute;
-  width: 316px;
-  height: 364px;
-  left: 271px;
-  top: 735px;
-  background: #c4c4c4;
+const gallery = css`
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  flex-wrap: wrap;
 `;
 
-const img4 = css`
-  position: absolute;
-  width: 310px;
-  height: 364px;
-  left: 853px;
-  top: 735px;
-  background: #c4c4c4;
-`;
-
-export default function ProductList(props) {
+export default function DisplayAllProducts() {
   return (
-    <Layout>
-      <main>
-        <div>
-          {/* products.map((item) => {
-return <li>{products.productName}</li>})  */}
-          product list
-          <img src="a#" alt="none for now" css={img1} />
-          <img src="a#" alt="none for now" css={img2} />
-          <img src="a#" alt="none for now" css={img3} />
-          <img src="a#" alt="none for now" css={img4} />
-        </div>
-      </main>
-    </Layout>
+    <div>
+      <Head>
+        <title>All products</title>
+      </Head>
+
+      <Layout>
+        <h1 css={intro}>Our shoes</h1>
+
+        <ul css={gallery}>
+          {shoes.map((shoe) => {
+            return (
+              <li key={shoe.id}>
+                <Link href={`/shoes/${shoe.id}`}>
+                  <img css={product} src={`${shoe.image}`} alt="shoe"></img>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </Layout>
+    </div>
   );
 }

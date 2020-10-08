@@ -8,6 +8,7 @@
       "es2020.string"
     ],
     "allowJs": true,
+    "checkJs": true,
     "strict": true,
     "noEmit": true,
     "jsx": "preserve",
@@ -22,13 +23,6 @@
     "isolatedModules": true,
     "target": "es5"
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "**/*.js"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.js"],
+  "exclude": ["node_modules"]
 }

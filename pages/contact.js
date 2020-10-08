@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import Layout from '../components/Layout';
+import Head from 'next/head';
 
 const centeredContainerStyles = css`
   max-width: 100%;
@@ -59,7 +60,7 @@ const centeredContainerStyles = css`
 
     textarea {
       width: 75%;
-      min-height: 25px;
+      min-height: 165px;
       padding: 10px;
       margin: 5px;
 
@@ -89,6 +90,9 @@ const centeredContainerStyles = css`
 export default function Contact(props) {
   return (
     <Layout>
+      <Head>
+        <title>All products</title>
+      </Head>
       <main>
         <div css={centeredContainerStyles}>
           <form>

@@ -118,6 +118,13 @@ export default function Header() {
         <Link href="/ship-return">
           <a>Ship / Return</a>
         </Link>
+
+        {/* make this float? */}
+        <img
+          src="/shopping-cart.svg"
+          alt="shopping cart icon"
+          style={{ height: 30 }}
+        />
       </div>
     </header>
   );

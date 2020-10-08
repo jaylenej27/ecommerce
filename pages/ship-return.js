@@ -1,6 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import Layout from '../components/Layout';
+import Head from 'next/head';
 
 const centeredContainerStyles = css`
   max-width: 100%;
@@ -14,11 +15,6 @@ const centeredContainerStyles = css`
     height: 250px;
   }
 
-  section {
-    justify-content: center;
-    max-width: 75%;
-  }
-
   ul {
     li {
       list-style: none;
@@ -29,11 +25,16 @@ const centeredContainerStyles = css`
 export default function ShipOrReturn(props) {
   return (
     <Layout>
+      <Head>
+        <title>All products</title>
+      </Head>
       <main>
         <div css={centeredContainerStyles}>
-          <img src="/7085.jpg" alt="Courier handing package to customer" />
-          <h1>Shipping fulfillment is based in Vienna AT</h1>
-          <section>
+          <div>
+            <img src="/7085.jpg" alt="Courier handing package to customer" />
+            <h1>Shipping fulfillment is based in Vienna AT</h1>
+          </div>
+          <div>
             <p>
               Once you have placed your order you will receive an order
               confirmation. Orders are then processed within 5 business days,
@@ -62,8 +63,8 @@ export default function ShipOrReturn(props) {
               immediately reported to the shipping company AND Applejacks upon
               receipt of goods.
             </p>
-          </section>
-          <section>
+          </div>
+          <div>
             <h2>A return or exchange is possible when…</h2>
             <ul>
               <li>The items are unworn</li>
@@ -105,7 +106,7 @@ export default function ShipOrReturn(props) {
             ON OUR WEBSITE. HOWEVER, BECAUSE THE COLORS YOU SEE WILL DEPEND ON
             YOUR MONITOR, WE CANNOT GUARANTEE THAT YOUR MONITOR’S DISPLAY OF ANY
             COLOR WILL BE ACCURATE***
-          </section>
+          </div>
         </div>
       </main>
     </Layout>
