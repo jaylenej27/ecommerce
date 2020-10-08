@@ -38,17 +38,24 @@ const headerStyles = css`
   } */
 `;
 
+const shoppingCart = css`
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 0;
+  top: 0;
+`;
+
 const navUL = css`
   margin: 0;
   padding: 0;
   list-style: none;
   display: flex;
-  height: 100%;
   top: 0;
   justify-content: space-around;
   transition: background-size 0.4s cubic-bezier(0.23, 1, 0.32, 1);
   transition: outline-offset 0.15s ease-out;
   align-items: center;
+  position: relative;
 
   a {
     margin-right: 20px;
@@ -92,6 +99,15 @@ const navUL = css`
 export default function Header() {
   return (
     <header css={headerStyles}>
+      <div css={shoppingCart}>
+        <Link href="cart">
+          <img
+            src="/shopping-cart.svg"
+            alt="shopping cart icon"
+            style={{ height: 30 }}
+          />
+        </Link>
+      </div>
       <div css={navUL}>
         <Link href="/">
           <a>Home</a>
@@ -118,13 +134,6 @@ export default function Header() {
         <Link href="/ship-return">
           <a>Ship / Return</a>
         </Link>
-
-        {/* make this float? */}
-        <img
-          src="/shopping-cart.svg"
-          alt="shopping cart icon"
-          style={{ height: 30 }}
-        />
       </div>
     </header>
   );

@@ -73,10 +73,12 @@ const categoryImageHolder = css`
 
   img {
     max-width: 19.75rem;
+    max-height: 26rem;
     margin: 0 0.75rem;
     flex-grow: 0;
     flex-shrink: 1;
     flex-basis: auto;
+    object-fit: cover;
   }
 
   button {

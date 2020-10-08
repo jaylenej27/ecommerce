@@ -96,22 +96,27 @@ export default function Contact(props) {
       <main>
         <div css={centeredContainerStyles}>
           <form>
-            <h2>CONTACT US</h2>
+            <h1>CONTACT US</h1>
             <p>
-              <label>Name</label>
-              <input type="text" placeholder="Full Name" />
+              <label htmlFor="Full Name">Name</label>
+              <input type="text" placeholder="Full Name" id="Full Name" />
             </p>
             <p>
-              <label>Email</label>
-              <input type="text" placeholder="Email" />
+              <label htmlFor="Email">Email</label>
+              <input type="text" placeholder="Email" id="Email" />
             </p>
             <p>
-              <label>Message</label>
+              <label htmlFor="Enter Message">Message</label>
               <br />
-              <textarea placeholder="Please enter your message here"></textarea>
+              <textarea
+                placeholder="Please enter your message here"
+                id="Enter Message"
+              ></textarea>
             </p>
             <p>
-              <button type="submit">Send Message</button>
+              <button type="submit" id="Submit">
+                Send Message
+              </button>
             </p>
           </form>
         </div>
