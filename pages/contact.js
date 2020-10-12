@@ -60,7 +60,7 @@ const centeredContainerStyles = css`
 
     textarea {
       width: 75%;
-      min-height: 165px;
+      min-height: 160px;
       padding: 10px;
       margin: 5px;
 
@@ -71,13 +71,13 @@ const centeredContainerStyles = css`
     button {
       float:right;
       padding:8px 12px;
-      margin:8px 0 0;
+      margin:8px 0px;
       font-family:'Montserrat',sans-serif;
       border:2px solid #78788c;
       background:0;
       color:#5a5a6e;
       cursor:pointer;
-      transition:all .3s
+      transition:all .3s;
     }
 
     button:hover {

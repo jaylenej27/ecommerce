@@ -43,6 +43,12 @@ const shoppingCart = css`
   justify-content: flex-end;
   margin-bottom: 0;
   top: 0;
+  cursor: pointer;
+  margin-top: 5px;
+  margin-right: 5px;
+  width: 100%;
+  position: fixed;
+  z-index: 100;
 `;
 
 const navUL = css`
@@ -65,17 +71,17 @@ const navUL = css`
     line-height: 31px;
     transition: background-size 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     background-position-y: 100%;
+    min-width: 89px;
+    text-align: center;
+
     &:hover {
       background-image: linear-gradient(#7a435a, #9171b3);
       background-size: 100% 3px;
       background-position-x: 50%;
       background-repeat: no-repeat;
     }
-
-    li {
-      display: inline;
-    }
   }
+
   img {
     text-align: left;
     padding: 0 0.625rem 0 0.85rem;
@@ -100,7 +106,7 @@ export default function Header() {
   return (
     <header css={headerStyles}>
       <div css={shoppingCart}>
-        <Link href="cart">
+        <Link href="/cart">
           <img
             src="/shopping-cart.svg"
             alt="shopping cart icon"
@@ -113,7 +119,7 @@ export default function Header() {
           <a>Home</a>
         </Link>
 
-        <Link href="productlist">
+        <Link href="/products/productlist">
           <a>Shop</a>
         </Link>
 

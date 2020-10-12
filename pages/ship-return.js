@@ -37,21 +37,23 @@ export default function ShipOrReturn(props) {
               <h1>Shipping fulfillment is based in Vienna AT</h1>
             </div>
             <div className="shipping1">
+              <h2>
+                DHL Express Shipping: Prices are based off the delivery address.{' '}
+              </h2>
+              <p>
+                We have 4 Different shipping Zones (Vienna, Austria/EU/Zone 1,
+                Zone 2, Zone 3/Rest Of world) Free pickup in Vienna FREE
+                shipping to EU Zone 2 (Includes US/Canada) €15 per order Zone 3
+                (includes China & Korea) €25 up to 10kilo, €75 over 10kilo If
+                you have further questions, Contact us
+              </p>
+
               <p>
                 Once you have placed your order you will receive an order
                 confirmation. Orders are then processed within 5 business days,
                 once payment has been received. Once orders are processed your
                 items will be shipped and you will be notified with shipping
                 confirmation.
-              </p>
-
-              <p>
-                DHL Express Shipping: Prices are based off the delivery address.
-                We have 4 Different shipping Zones (Vienna, Austria/EU/Zone 1,
-                Zone 2, Zone 3/Rest Of world) Free pickup in Vienna FREE
-                shipping to EU Zone 2 (Includes US/Canada) €15 per order Zone 3
-                (includes China & Korea) €25 up to 10kilo, €75 over 10kilo If
-                you have further questions, Contact us
               </p>
 
               <p>
@@ -120,10 +122,13 @@ export default function ShipOrReturn(props) {
       <style jsx>{`
         .intro {
           margin: 50px;
+          border-bottom: 3px solid #82afba;
         }
-        p {
-          color: blue;
-          max-width: 1100px;
+
+        .shipping1 {
+          justify-self: center;
+          max-width: 75%;
+          border-bottom: 3px solid #82afba;
         }
       `}</style>
     </>
