@@ -1,71 +1,247 @@
 import Head from 'next/head';
 import Layout from '../components/Layout';
+import cookie from 'js-cookie';
+import React, { useState } from 'react';
+import nextCookies from 'next-cookies';
+import Link from 'next/link';
 
+ 
 export default function Checkout() {
+  const [input, setInput] = useState('');
+
+  function buy() {
+    cookie.remove('cart');
+    cookie.remove('total');
+  }
+
+  const regexText = /[a-zA-Z]/g;
+  const regexNumber = /[0-9/]/g;
+
+  function checksTypeText(e) {
+    if (e.target.value.match(regexText)) {
+      setInput(e.target.value);
+      // console.log(input);
+    } else {
+      e.target.value = '';
+    }
+  }
+
+  function checksTypeNumber(e) {
+    if (e.target.value.match(regexNumber)) {
+      setInput(e.target.value);
+      // console.log(input);
+    } else {
+      e.target.value = '';
+    }
+  }
+
   return (
-    <>
+    <div>
+      <Head>
+        <title>Checkout Page</title>
+        <link rel="icon" href="/siteicon.png" />
+      </Head>
       <Layout>
-        <Head>Checkout</Head>
-        <div className="maincontainer">
-          Can you see me?
-          <div className="leftside">
-            <form>
-              {/* onSubmit(submit) */}
-              <label htmlFor="First Name"></label>
+
+      <div className="container">
+        <h1>Contact information and payment</h1>
+        <div className="wholeBox">
+          <div className="contactInfo">
+            <h3>Shipping address</h3>
+            <span>
+              <label htmlFor="name">Full name</label>
               <input
-                id="First Name"
-                name="First Name"
-                placeholder="First Name"
+                data-cy="full-name"
+                type="text"
+                id="name"
+                placeholder="Michelle Obama"
+                onChange={checksTypeText}
               ></input>
-              <label htmlFor="Last Name"></label>
+            </span>
+            <span>
+              <label htmlFor="email">Email</label>
               <input
-                id="Last Name"
-                name="Last Name"
-                placeholder="Last Name"
-              ></input>
-              <label htmlFor="Email"></label>
-              <input
-                id="Email"
-                name="Email"
-                placeholder="michelleobama@gmail.com"
+                id="email"
                 type="email"
+                placeholder="michelleobama@gmail.com"
               ></input>
-              <label htmlFor="Phone"></label>
+            </span>
+            <span>
+              <label htmlFor="address">Address</label>
               <input
-                id="Phone"
-                name="Phone"
-                placeholder="+00 123 456 7788"
+                id="address"
+                type="text"
+                placeholder="Burggasse 123"
               ></input>
-              <label htmlFor="Address"></label>
+            </span>
+            <span>
+              <label htmlFor="zip" >Zip-code</label>
               <input
-                id="Address"
-                name="Address"
-                placeholder="Street Name, Building number, Apt number"
+                id="zip"
+                placeholder="1060"
+                type="text"
+                maxLength="8"
+                onChange={checksTypeNumber}
               ></input>
-              <label htmlFor="City"></label>
-              <input id="City" name="City" placeholder="City"></input>
-              <label htmlFor="Zip Code"></label>
-              <input id="Zip" name="Zip" placeholder="1060"></input>
-            </form>
+            </span>
+            <span>
+              <label htmlFor="city">City</label>
+              <input id="city" placeholder="Wien" type="text"></input>
+            </span>
+          </div>
+          <div className="payment">
+            <h3>Payment info</h3>
+            <span>
+              <label htmlFor="namecard">Name on card</label>
+              <input
+                id="namecard"
+                type="text"
+                placeholder="Alenio B. Hasslacherio"
+                onChange={checksTypeText}
+              ></input>
+            </span>
+            <span>
+              <label htmlFor="cardnumber">Credit card number</label>
+              <input
+                id="cardnumber"
+                type="text"
+                placeholder="1234-5678-9000-1111"
+                maxLength="16"
+                onChange={checksTypeNumber}
+              ></input>
+            </span>
+            <span>
+              <label htmlFor="expdate">Expiry date</label>
+              <input
+                id="expdate"
+                type="text"
+                placeholder="12/20"
+                onChange={checksTypeNumber}
+                maxLength="5"
+              ></input>
+            </span>
+            <span>
+              <label htmlFor="cvv">CVV</label>
+              <input
+                id="cvv"
+                type="number"
+                placeholder="123"
+                onChange={checksTypeNumber}
+              ></input>
+            </span>
           </div>
         </div>
-      </Layout>
-      <style jsx>
-        {`
-          .maincontainer {
-            max-width: 100%;
-            text-align: center;
-            justify-content: space-around;
-            display: flex;
-            position: relative;
-            margin-top: 25vh;
-          }
 
-          .leftside {
-            border: 3px #1b1b1b;
-          }
-        `}
-      </style>
-    </>
+        <p className="total">
+          Total price of items in cart: {cookie.getJSON('total')}€
+        </p>
+        {!input ? (
+          ''
+        ) : (
+          <Link href="/thx">
+            <a data-cy="buy-button">
+              <button onClick={buy}>BUY!</button>
+            </a>
+          </Link>
+        )}
+      </div>
+
+      </Layout>
+
+      <style jsx>{`
+        .container {
+          margin-top: 140px;
+          width: 80%;
+          margin-left: auto;
+          margin-right: auto;
+          background-color: white;
+          border-radius: 20px;
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+        }
+        .wholeBox {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 20px;
+          margin-top: -20px;
+        }
+        .contactInfo,
+        .payment {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+        }
+        .contactInfo > *,
+        .payment > * {
+          padding: 10px;
+        }
+        .cards {
+          margin-top: -40px;
+        }
+        input {
+          padding: 5px;
+          border-radius: 5px;
+        }
+        input[id='cvv'],
+        input[id='zip'],
+        input[id='expdate'] {
+          width: 70px;
+        }
+        span {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 15px;
+        }
+        span label {
+          text-align: right;
+        }
+        img {
+          height: 30px;
+        }
+        img:last-of-type {
+          margin-left: 3px;
+        }
+        a {
+          align-self: flex-end;
+        }
+        .total {
+          align-self: flex-end;
+        }
+        button {
+          background-color: #e7d187;
+          border: 2px solid transparent;
+          color: #0c0c0c;
+          font-size: 18px;
+          padding: 12px 24px;
+          border: none;
+          cursor: pointer;
+          transition: background-color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+          border-radius: 10px;
+          width: 155px;
+          margin-top: 40px;
+        }
+        button:hover {
+          transition: background-color 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+          background-color: #82afba;
+        }
+        }
+      `}</style>
+    </div>
   );
 }
+// export async function getServerSideProps(context) {
+//   const { cart, total } = nextCookies(context);
+
+//   console.log(total);
+//   return {
+//     props: {
+//       ...(cart ? { cart: cart } : undefined),
+//       total,
+//     },
+//   };
+// }
+ 
+
+

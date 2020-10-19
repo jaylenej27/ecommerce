@@ -5,6 +5,8 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { shoes } from '../../utilities/productdatabase';
 import nextCookies from 'next-cookies';
+import { newProductFromCookies } from '../../utilities/cookies';
+
 
 const intro = css`
   display: flex;
@@ -93,7 +95,17 @@ export default function DisplayAllProducts() {
                   </Link>
                   <h2>{shoe.name}</h2>
                   <h3>{shoe.price}</h3>
-                  <button>Add to Cart</button>
+                  <button onClick={(e) => {newProductFromCookies(shoe.id)}}>Add to Cart</button>
+
+                  {/* button to remove from cart */}
+          {/* <button
+            css={buyButton}
+            onClick={deleteCookie}
+               aria-label={`Remove ${shoe.name} from your cart`}
+          >
+            Remove
+          </button> */}
+          
                 </div>
               </li>
             );
@@ -102,4 +114,22 @@ export default function DisplayAllProducts() {
       </Layout>
     </div>
   );
+}
+
+export function getServerSideProps(context) {
+  const allCookies = nextCookies(context);
+
+  const itemAddedToCart = allCookies.itemAddedToCart || [];
+  const id = allCookies.id || [];
+  // const numberofItems = allCookies.numberofItems || 0;
+  // const total = allCookies.total || [];
+
+  return {
+    props: { 
+    id: id,
+    itemAddedToCart: itemAddedToCart,
+    // numberofItems,
+    // total,
+    },
+  }
 }

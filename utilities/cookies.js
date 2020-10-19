@@ -1,31 +1,30 @@
-import cookie from 'js-cookie';
+import Cookie from 'js-cookie';
 
-export function getFollowingFromCookies() {
+export function getProductFromCookies() {
   // Use "|| []" in order to use a default
   // value, in case this is undefined
-  const following = cookie.getJSON('following') || [];
-  return following;
+  const addToCart = Cookie.getJSON('addToCart') || [];
+  
+  return addToCart;
+  
 }
 
-export function toggleFollowUserInCookie(id: string) {
+export function newProductFromCookies(id) {
   // ['1', '3']
-  const following = getFollowingFromCookies();
+  const addToCart = getProductFromCookies();
 
-  let newFollowing;
+  const newProductCart = [...addToCart, {id: id}]
+  Cookie.set('shoppingCart', newProductCart)
 
-  if (following.includes(id)) {
-    // If the user id is already in the following
-    // array, then remove it from the array
-    newFollowing = following.filter((followed: string) => followed !== id);
-  } else {
-    // If the user id is not in the array,
-    // add it to the array
-    newFollowing = [...following, id];
-    // Alternative version:
-    // newFollowing = following.concat(id);
-  }
+  return newProductCart
+}
 
-  cookie.set('following', newFollowing);
+export function removeProductFromCookies(id) {
+  const productCart = getProductFromCookies();
+  const newProductCart = productCart.filter((item) => item.id !== id);
 
-  return newFollowing;
+  Cookie.set('cart', newProductCart);
+  console.log('removed item, updated cart', newProductCart);
+
+  return newProductCart;
 }

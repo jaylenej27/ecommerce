@@ -142,7 +142,7 @@ export default function Home() {
                 </a>
               </div>
               <div css={categoryImageHolder}>
-                <a href="/productlist">
+                <a href="/products/productlist">
                   <img
                     src="all.jpg"
                     alt="Stitch Fix Kids blue ombre hoodie sweatshirt with palm tree graphic."

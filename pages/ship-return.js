@@ -36,7 +36,7 @@ export default function ShipOrReturn(props) {
               <img src="/7085.jpg" alt="Courier handing package to customer" />
               <h1>Shipping fulfillment is based in Vienna AT</h1>
             </div>
-            <div className="shipping1">
+            <div className="styleddiv">
               <h2>
                 DHL Express Shipping: Prices are based off the delivery address.{' '}
               </h2>
@@ -68,7 +68,7 @@ export default function ShipOrReturn(props) {
                 AND Applejacks upon receipt of goods.
               </p>
             </div>
-            <div className="returns1">
+            <div className="styleddiv">
               <h2>A return or exchange is possible when…</h2>
               <ul>
                 <li>The items are unworn</li>
@@ -121,12 +121,14 @@ export default function ShipOrReturn(props) {
       </Layout>
       <style jsx>{`
         .intro {
-          margin: 50px;
+          margin: auto;
           border-bottom: 3px solid #82afba;
         }
 
-        .shipping1 {
-          justify-self: center;
+        .styleddiv {
+          display: flex;
+          flex-direction: column;
+          margin: auto;
           max-width: 75%;
           border-bottom: 3px solid #82afba;
         }
