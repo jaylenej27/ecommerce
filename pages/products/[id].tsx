@@ -4,27 +4,29 @@ import Layout from '../../components/Layout';
 import { shoes } from '../../utilities/productdatabase';
 import { jsx, css } from '@emotion/core';
 import nextCookies from 'next-cookies';
-import { newProductFromCookies, removeProductFromCookies } from '../../utilities/cookies';
+import { newProductFromCookies } from '../../utilities/cookies';
 
-// type Shoes = {
-//   id: string;
-//   name: string;
-//   image: string;
-//   url: string;
-//   price: number;
-// };
+type Shoes = {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  alttext: string;
+  desc: string;
+};
 
-// type Props = {
-//   product: {
-//     id: string;
-//     name: string;
-//     image: string;
-//     url: string;
-//     price: number;
-//   };
-//   cartList: Array<Product>;
-//   page: string;
-// };
+type Props = {
+  shoes: {
+  id: string;
+  name: string;
+  price: number;
+  image: string;
+  alttext: string;
+  desc: string;
+  };
+  cartList: Array<Shoes>;
+  page: string;
+};
 
 const top = css`
   display: flex;
@@ -65,26 +67,24 @@ const buyButton = css`
   }
 `;
 
-export default function SingleShoe(props) {
-// console.log(props)
-// const [cart, setCart] = useState(props.cartList ?? []);
+export default function SingleShoe(props: Props) {
+  // console.log(props)
+  // const [cart, setCart] = useState(props.cartList ?? []);
 
-// const addToCart = () => {
-//   const newCart = [...cart];
-//   newCart.push(props.product);
-//   setCart(newCart);
-// };
+  // const addToCart = () => {
+  //   const newCart = [...cart];
+  //   newCart.push(props.product);
+  //   setCart(newCart);
+  // };
 
   const shoe = shoes.find((currentShoe) => {
     if (currentShoe.id === props.id) {
       return true;
     }
     return false;
-  });  
+  });
 
-  if (!shoe)  return (
-    <div>404 oops</div>
-  ) 
+  if (!shoe) return <div>404 oops</div>;
 
   return (
     <Layout>
@@ -98,19 +98,16 @@ export default function SingleShoe(props) {
         <div css={productDisplay}>
           <h1>{shoe.name}</h1>
           <p>€ {shoe.price}</p>
-          
-          {/* shoe sizes as checkboxes?
-          {shoe.sizes.map((size) => {
-            return 
-            <li>{size}</li>
-          })} */}
-          
+
           <p>{shoe.desc}</p>
-          
+
           {/* button that adds item to cart */}
           <button
-            css={buyButton} onClick={(e) => {newProductFromCookies(shoe.id)}}
-               aria-label={`Add ${shoe.name} to your cart`}
+            css={buyButton}
+            onClick={(e) => {
+              newProductFromCookies(shoe.id);
+            }}
+            aria-label={`Add ${shoe.name} to your cart`}
           >
             Add to cart
           </button>
@@ -126,15 +123,14 @@ export default function SingleShoe(props) {
 
 export function getServerSideProps(context) {
   const allCookies = nextCookies(context);
-// console.log(context)
+  // console.log(context)
   const itemAddedToCart = allCookies.itemAddedToCart || [];
-  // const itemRemovedFromCart = 
  
 
   return {
-    props: { 
-    id: context.query.id,
-    cart: itemAddedToCart,
+    props: {
+      id: context.query.id,
+      cart: itemAddedToCart,
     },
-  }
+  };
 }

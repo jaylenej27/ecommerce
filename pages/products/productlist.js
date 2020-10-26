@@ -57,12 +57,10 @@ const productImage = css`
   border-radius: 20%;
   cursor: pointer;
   object-fit: cover;
-  &:hover {
-     {
+  &:hover { 
       -moz-box-shadow: 0 0 10px #666666;
       -webkit-box-shadow: 0 0 10px #666666;
       box-shadow: 0 0 10px #666666;
-    }
   }
 `;
 

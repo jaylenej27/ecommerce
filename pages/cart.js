@@ -7,7 +7,7 @@ import cookie from 'js-cookie';
 import nextCookies from 'next-cookies';
 // import {getProductFromCookies, removeProductFromCookies} from '../utilities/cookies'
 import { shoes } from '../utilities/productdatabase';
-import RemoveFromCart from '../components/RemoveFromCart.tsx';
+import RemoveFromCart from '../components/RemoveFromCart';
 
 const styledButton = css`
   background-color: #e7d187;
@@ -33,11 +33,14 @@ export function totalSum(itemsInCart) {
     return acc + cur.price;
   }, 0);
 }
+
 function CartPage({ cart, products }) {
+  const cartTest = cookie.get('shoppingCart');
+  console.log("cartlist" , cartTest)
   const itemsInCart = cart || [];
   const totalCart = totalSum(itemsInCart);
-  cookie.set('total', totalCart);
-
+  
+// const list = shoes.filter(id => id =  cartTest.id)
   return (
     <div>
       <Head>
@@ -93,7 +96,7 @@ function CartPage({ cart, products }) {
               })}
         </div>
         <p className="total">
-          Total:
+          Total: {totalCart}
           {totalSum(itemsInCart)}€<br></br>
           {itemsInCart.length === 0 ? (
             ''

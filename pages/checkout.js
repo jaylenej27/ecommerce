@@ -6,11 +6,11 @@ import nextCookies from 'next-cookies';
 import Link from 'next/link';
 
  
-export default function Checkout() {
+export default function Checkout(props) {
   const [input, setInput] = useState('');
 
   function buy() {
-    cookie.remove('cart');
+    cookie.remove('shoppingcart');
     cookie.remove('total');
   }
 
@@ -96,7 +96,7 @@ export default function Checkout() {
               <input
                 id="namecard"
                 type="text"
-                placeholder="Alenio B. Hasslacherio"
+                placeholder="Michelle Obama"
                 onChange={checksTypeText}
               ></input>
             </span>
@@ -138,7 +138,7 @@ export default function Checkout() {
         {!input ? (
           ''
         ) : (
-          <Link href="/thx">
+          <Link href="/thankyou">
             <a data-cy="buy-button">
               <button onClick={buy}>BUY!</button>
             </a>
@@ -231,17 +231,20 @@ export default function Checkout() {
     </div>
   );
 }
-// export async function getServerSideProps(context) {
-//   const { cart, total } = nextCookies(context);
 
-//   console.log(total);
-//   return {
-//     props: {
-//       ...(cart ? { cart: cart } : undefined),
-//       total,
-//     },
-//   };
-// }
+// remove total
+
+export async function getServerSideProps(context) {
+  const { cart, total } = nextCookies(context) || [];
+
+  console.log(total);
+  return {
+    props: {
+      ...(cart ? { cart: cart } : undefined),
+      total,
+    },
+  };
+}
  
 
 

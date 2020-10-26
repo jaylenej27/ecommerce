@@ -12,7 +12,7 @@ const centeredContainerStyles = css`
   margin-top: 25vh;
 `;
 
-export default function FAQ(props) {
+export default function FAQ() {
   return (
     <Layout>
       <h1>qa goes here</h1>

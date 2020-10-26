@@ -1,7 +1,11 @@
 import React from 'react';
 import { useState, useRef } from 'react';
 
-function Accordion(props) {
+type Props = {
+  content: 'string'
+}
+
+function Accordion(props: Props) {
   const [setActive, setActiveState] = useState('');
   const [setHeight, setHeightState] = useState('0px');
 

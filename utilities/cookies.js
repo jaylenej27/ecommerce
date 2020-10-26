@@ -11,11 +11,11 @@ export function getProductFromCookies() {
 
 export function newProductFromCookies(id) {
   // ['1', '3']
-  const addToCart = getProductFromCookies();
+  const previousCartList = getProductFromCookies();
 
-  const newProductCart = [...addToCart, {id: id}]
+  const newProductCart = [...previousCartList, {id: id}]
   Cookie.set('shoppingCart', newProductCart)
-
+console.log(newProductCart)
   return newProductCart
 }
 

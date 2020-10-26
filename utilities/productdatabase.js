@@ -2,7 +2,7 @@ export const shoes = [
   {
     id: '1',
     name: 'Greenwood',
-    // sizes: [36, 37, 38, 39, 40, 41],
+    
     price: '150',
     image: '/greenwood.jpg',
     alttext:
@@ -12,7 +12,7 @@ export const shoes = [
   {
     id: '2',
     name: 'Seneca',
-    // sizes: [36, 37, 38, 39, 40, 41],
+    
     price: '150',
     image: '/seneca.jpg',
     alttext: 'a pair of and cream shoes high heeled shoes in sandal style',
@@ -21,7 +21,7 @@ export const shoes = [
   {
     id: '3',
     name: 'Newport',
-    // sizes: [36, 37, 38, 39, 40, 41],
+    
     price: '150',
     image: '/newport.jpg',
     alttext: 'a pair of blue high heeled suede shoes with buckle',
@@ -30,7 +30,7 @@ export const shoes = [
   {
     id: '4',
     name: 'Eldorado',
-    // sizes: [39, 40, 41, 42, 43, 44, 45, 46],
+    
     price: '150',
     image: '/eldorado.jpg',
     alttext: 'a pair of burgundy lace up boots',
