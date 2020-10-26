@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core';
 import Layout from '../components/Layout';
-import Accordion from '../components/Accordian';
+import Accordion from '../components/Accordian.tsx';
 
 const centeredContainerStyles = css`
   max-width: 100%;

@@ -3,7 +3,6 @@ import { jsx, css } from '@emotion/core';
 import Layout from '../../components/Layout';
 import Head from 'next/head';
 import Link from 'next/link';
-import { shoes } from '../../utilities/productdatabase';
 import nextCookies from 'next-cookies';
 import { newProductFromCookies } from '../../utilities/cookies';
 
@@ -64,7 +63,7 @@ const productImage = css`
   }
 `;
 
-export default function DisplayAllProducts() {
+export default function DisplayAllProducts(props) {
   return (
     <div>
       <Head>
@@ -75,7 +74,7 @@ export default function DisplayAllProducts() {
         <h1 css={intro}>All products</h1>
 
         <ul css={gallery}>
-          {shoes.map((shoe) => {
+          {props.shoes.map((shoe) => {
             return (
               <li key={shoe.id}>
                 <div css={imageWrapper}>
@@ -94,15 +93,6 @@ export default function DisplayAllProducts() {
                   <h2>{shoe.name}</h2>
                   <h3>{shoe.price}</h3>
                   <button onClick={(e) => {newProductFromCookies(shoe.id)}}>Add to Cart</button>
-
-                  {/* button to remove from cart */}
-          {/* <button
-            css={buyButton}
-            onClick={deleteCookie}
-               aria-label={`Remove ${shoe.name} from your cart`}
-          >
-            Remove
-          </button> */}
           
                 </div>
               </li>
@@ -114,7 +104,10 @@ export default function DisplayAllProducts() {
   );
 }
 
-export function getServerSideProps(context) {
+export async function getServerSideProps(context) {
+  const { getProducts } = await import('../../utilities/productdatabase');
+  const shoes = await getProducts();
+
   const allCookies = nextCookies(context);
 
   const itemAddedToCart = allCookies.itemAddedToCart || [];
@@ -124,10 +117,9 @@ export function getServerSideProps(context) {
 
   return {
     props: { 
+    shoes,
     id: id,
     itemAddedToCart: itemAddedToCart,
-    // numberofItems,
-    // total,
     },
   }
 }

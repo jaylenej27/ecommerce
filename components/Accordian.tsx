@@ -3,6 +3,7 @@ import { useState, useRef } from 'react';
 
 type Props = {
   content: 'string'
+  title: 'string'
 }
 
 function Accordion(props: Props) {

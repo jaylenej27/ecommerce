@@ -1,30 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Ecommerce Shop
 
-## Getting Started
+Description
+Ecommerce shop (shoes) created with Next.js
 
-First, run the development server:
+The shop features following pages and functionality:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+a products page
+a page for each single product
+a shopping cart page showing all tiems added to cart
+a checkout page which shows the total and asks for shipping and payment information
+a thank you page after a checkout has been completed
+header/footer
+about page
+shipping/returns page
+faq w/dropdown accordian
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Technologies used
+Next.js
+PostgresQL
+Ley(lukeed/ley)
+Typescript
+Heroku
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Setup instructions
+Database Setup
+Copy the .env.example file to .env and add the database connection information.
 
-## Learn More
+You'll also need PostgreSQL for this.
 
-To learn more about Next.js, take a look at the following resources:
+PostgreSQL Installation instructions
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Follow the instructions from the PostgreSQL step on upleveled/system-setup.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Run the following queries inside of psql to set up the database and the user:
 
-## Deploy on Vercel
+CREATE DATABASE databasename>;
+CREATE USER <username> WITH ENCRYPTED PASSWORD '<password>';
+GRANT ALL PRIVILEGES ON DATABASE <databasename> TO <username>;
+Then, in order to connect to the database using this new user, quit psql and reconnect:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+\q
+psql -U ecommerce ecommerce;
+You can run the migrations with the following command:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+yarn migrate up
+To drop the last migration run the following in your terminal:
+
+yarn migrate down
+
+Deployment instructions for Heroku
+Sign up for Heroku: signup.heroku.com
+Create a new App
+Choose a name and select your region
+Click on the button in the middle called "Connect to GitHub"
+Search for your repository in the search box at the bottom of the page and click on the "Connect" button
+Click on the button for "Enable Automatic Deploys"
+Go back to the Overview tab and click on "Configure Add-On"
+Search for "Postgres" and select "Heroku Postgres" from the results

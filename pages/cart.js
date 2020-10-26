@@ -6,7 +6,6 @@ import { jsx, css } from '@emotion/core';
 import cookie from 'js-cookie';
 import nextCookies from 'next-cookies';
 // import {getProductFromCookies, removeProductFromCookies} from '../utilities/cookies'
-import { shoes } from '../utilities/productdatabase';
 import RemoveFromCart from '../components/RemoveFromCart';
 
 const styledButton = css`
@@ -172,8 +171,8 @@ export default CartPage;
 
 export async function getServerSideProps(context) {
   const { cart } = await nextCookies(context);
-  // const { getProducts } = await import('../db.js');
-  // const products = await getProducts();
+  const { getProducts } = await import('../../utilities/productdatabase');
+  const shoes = await getProducts();
 
   return {
     // will be passed to the page component as props
