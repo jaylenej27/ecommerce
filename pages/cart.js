@@ -6,7 +6,7 @@ import { jsx, css } from '@emotion/core';
 import cookie from 'js-cookie';
 import nextCookies from 'next-cookies';
 // import {getProductFromCookies, removeProductFromCookies} from '../utilities/cookies'
-import RemoveFromCart from '../components/RemoveFromCart';
+import RemoveFromCart from '../components/RemoveFromCart.tsx';
 
 const styledButton = css`
   background-color: #e7d187;
@@ -66,27 +66,7 @@ function CartPage({ cart, products }) {
                 return (
                   <div data-cy={'item-cart'} className="item" key={item.id}>
                     <img src={item.img} alt="item" />
-                    <p>{item.name}</p>
-                    <span data-cy={'amount-cart'} className="buttonz">
-                      {item.amount === 1 ? (
-                        ''
-                      ) : (
-                        <ReduceOneItem
-                          item={item}
-                          cart={cart}
-                          products={products}
-                        />
-                      )}
-
-                      <p className="amount-cart">{item.amount}</p>
-
-                      <AddOneItem
-                        item={item}
-                        cart={cart}
-                        products={products}
-                        itemsInCart={itemsInCart}
-                      />
-                    </span>
+                    <p>{item.name}</p>                 
                     <p className="total-cart">{item.price}€</p>
 
                     <RemoveFromCart item={item} itemsInCart={itemsInCart} />
@@ -96,7 +76,7 @@ function CartPage({ cart, products }) {
         </div>
         <p className="total">
           Total: {totalCart}
-          {totalSum(itemsInCart)}€<br></br>
+          {totalSum(itemsInCart)}€<br />
           {itemsInCart.length === 0 ? (
             ''
           ) : (
@@ -171,7 +151,7 @@ export default CartPage;
 
 export async function getServerSideProps(context) {
   const { cart } = await nextCookies(context);
-  const { getProducts } = await import('../../utilities/productdatabase');
+  const { getProducts } = await import('../utilities/productdatabase');
   const shoes = await getProducts();
 
   return {

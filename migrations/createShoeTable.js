@@ -13,6 +13,6 @@ info text);
 // My pre-configured "undo" function
 exports.down = async (sql) => {
   await sql`
-    DROP TABLE IF EXISTS users;
+    DROP TABLE IF EXISTS shoes;
 	`;
 };

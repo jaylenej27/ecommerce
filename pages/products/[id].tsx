@@ -1,7 +1,6 @@
 /** @jsx jsx */
 import Head from 'next/head';
 import Layout from '../../components/Layout';
-import { shoes } from '../../utilities/productdatabase';
 import { jsx, css } from '@emotion/core';
 import nextCookies from 'next-cookies';
 import { newProductFromCookies } from '../../utilities/cookies';
@@ -68,7 +67,10 @@ const buyButton = css`
 `;
 
 export default function SingleShoe(props: Props) {
-  // console.log(props)
+  if (!props.shoes) {
+    return <div>Item not found...</div>;
+  }
+  console.log(props);
   // const [cart, setCart] = useState(props.cartList ?? []);
 
   // const addToCart = () => {
@@ -77,37 +79,29 @@ export default function SingleShoe(props: Props) {
   //   setCart(newCart);
   // };
 
-  const shoe = shoes.find((currentShoe) => {
-    if (currentShoe.id === props.id) {
-      return true;
-    }
-    return false;
-  });
-
-  if (!shoe) return <div>404 oops</div>;
 
   return (
     <Layout>
       <Head>
-        <title>{shoe.name}</title>
+        <title>{props.shoes[0].name}</title>
       </Head>
       <div css={top}>
         <div>
-          <img src={shoe.image} alt={shoe.alttext} css={productImage} />
+          <img src={props.shoes[0].image} alt={props.shoes[0].alttext} css={productImage} />
         </div>
         <div css={productDisplay}>
-          <h1>{shoe.name}</h1>
-          <p>€ {shoe.price}</p>
+          <h1>{props.shoes[0].name}</h1>
+          <p>€{props.shoes[0].price}</p>
 
-          <p>{shoe.desc}</p>
+          <p>{props.shoes[0].info}</p>
 
           {/* button that adds item to cart */}
           <button
             css={buyButton}
             onClick={(e) => {
-              newProductFromCookies(shoe.id);
+              newProductFromCookies(props.shoes[0].id);
             }}
-            aria-label={`Add ${shoe.name} to your cart`}
+            aria-label={`Add ${props.shoes[0].name} to your cart`}
           >
             Add to cart
           </button>
@@ -121,15 +115,18 @@ export default function SingleShoe(props: Props) {
 //is run, and passes in the props - all of this is inside the server!
 //This does not show up in the browser
 
-export function getServerSideProps(context) {
+export async function getServerSideProps(context) {
   const allCookies = nextCookies(context);
   // console.log(context)
   const itemAddedToCart = allCookies.itemAddedToCart || [];
+  const { getProductById } = await import ('../../utilities/productdatabase');
+  const shoes = await getProductById(context.params.id);
  
 
   return {
     props: {
-      id: context.query.id,
+      id: context.params.id,
+      shoes,
       cart: itemAddedToCart,
     },
   };

@@ -64,6 +64,8 @@ const productImage = css`
 `;
 
 export default function DisplayAllProducts(props) {
+  const shoes = props.shoes;
+
   return (
     <div>
       <Head>
@@ -74,14 +76,13 @@ export default function DisplayAllProducts(props) {
         <h1 css={intro}>All products</h1>
 
         <ul css={gallery}>
-          {props.shoes.map((shoe) => {
+          {shoes.map((shoe) => {
             return (
               <li key={shoe.id}>
                 <div css={imageWrapper}>
                   <Link
                     href={
-                      `/products/${shoe.id}`
-                      // as={'/products/' + shoe.id}
+                      `/products/${shoe.id}`                      
                     }
                   >
                     <img
@@ -91,7 +92,7 @@ export default function DisplayAllProducts(props) {
                     ></img>
                   </Link>
                   <h2>{shoe.name}</h2>
-                  <h3>{shoe.price}</h3>
+                  <h3>€{shoe.price}</h3>
                   <button onClick={(e) => {newProductFromCookies(shoe.id)}}>Add to Cart</button>
           
                 </div>
@@ -108,12 +109,12 @@ export async function getServerSideProps(context) {
   const { getProducts } = await import('../../utilities/productdatabase');
   const shoes = await getProducts();
 
+  console.log(shoes);
+  
   const allCookies = nextCookies(context);
 
   const itemAddedToCart = allCookies.itemAddedToCart || [];
   const id = allCookies.id || [];
-  // const numberofItems = allCookies.numberofItems || 0;
-  // const total = allCookies.total || [];
 
   return {
     props: { 

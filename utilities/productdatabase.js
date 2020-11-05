@@ -7,7 +7,9 @@ export async function getProducts() {
   const products = await sql`
   SELECT * FROM shoes
   `;
+  console.log(products)
   return products;
+  
 }
 
 export async function getProductById(id) {

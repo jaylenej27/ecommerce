@@ -10,7 +10,7 @@ type Item = {
   info: string;
 };
 
-type itemsInCart = {
+type ItemsInCart = {
   id: string;
   name: string;
   img: string;
@@ -18,7 +18,8 @@ type itemsInCart = {
   price: number;
   info: string;
 };
-type Props = { item: Item; itemsInCart: itemsInCart[] };
+
+type Props = { item: Item; itemsInCart: ItemsInCart[] };
 
 export default function RemoveFromCart(props: Props) {
   function removeItem(id) {
