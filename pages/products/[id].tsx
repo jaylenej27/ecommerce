@@ -4,6 +4,7 @@ import Layout from '../../components/Layout';
 import { jsx, css } from '@emotion/core';
 import nextCookies from 'next-cookies';
 import { newProductFromCookies } from '../../utilities/cookies';
+import AddToCart from '../../components/AddToCart';
 
 type Shoes = {
   id: string;
@@ -105,6 +106,7 @@ export default function SingleShoe(props: Props) {
           >
             Add to cart
           </button>
+          {/* <AddToCart /> */}
         </div>
       </div>
     </Layout>

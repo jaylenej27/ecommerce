@@ -1,7 +1,29 @@
+module.exports = function setPostgresDefaultsOnHeroku() {
+  if (process.env.DATABASE_URL) {
+    const url = require('url');
+
+    // Extract the connection information from the Heroku
+    // environment variable
+    const { hostname, pathname, auth } = url.parse(process.env.DATABASE_URL);
+
+    const [username, password] = auth.split(':');
+
+    process.env.PGHOST = hostname;
+    process.env.PGDATABASE = pathname.slice(1);
+    process.env.PGUSERNAME = username;
+    process.env.PGPASSWORD = password;
+  }
+};
+
 require('dotenv').config();
 
 const postgres = require('postgres');
-const sql = postgres();
+const sql = process.env.NODE_ENV === 'production'
+? // Heroku needs SSL connections but
+  // has an "unauthorized" certificate
+  // https://devcenter.heroku.com/changelog-items/852
+  postgres({ ssl: { rejectUnauthorized: false } })
+: postgres();
 
 export async function getProducts() {
   const products = await sql`
